@@ -15,16 +15,24 @@ class MunicipioController extends Controller
         
             $municipios = json_decode($response->body());
 
+            $items = 0;
+
             foreach($municipios as $municipio) {
-                $new_municipio = new Municipio;
-                $new_municipio->ibge_municipio_nome = $municipio->nome;
-                $new_municipio->ibge_municipio_id = $municipio->id;
-                $new_municipio->ibge_uf_nome = $municipio->microrregiao->mesorregiao->nome;
-                $new_municipio->ibge_uf_id = $municipio->microrregiao->mesorregiao->id;
-                $new_municipio->save();
+                Municipio::updateOrCreate (
+                    ['ibge_municipio_id' => $municipio->id], 
+                    [
+                        'ibge_municipio_nome' => $municipio->nome,
+                        'ibge_uf_nome' => $municipio->microrregiao->mesorregiao->UF->nome,
+                        'ibge_uf_id' => $municipio->microrregiao->mesorregiao->UF->id
+                    ]
+                );
+
+                $items++;
             }
-            return "successfully imported";
+
+            return "{$items} items successfully imported.";
         } catch (\Exception $e) {
+            
             return $e->getMessage();
         }
     }
