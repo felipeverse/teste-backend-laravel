@@ -5,9 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Models\Municipio;
+use App\Http\Resources\MunicipioResource;
 
 class MunicipioController extends Controller
 {
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        $data = Municipio::latest()->get();
+        return response()->json([MunicipioResource::collection($data), 'Municipios carregados']);
+    }
 
     /**
      * Importa para o banco de dados os munícipios da uf passada via parâmetro.
