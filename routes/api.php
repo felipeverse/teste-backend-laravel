@@ -34,4 +34,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     // Lista todos os munícipios url/api/municipios
     Route::get('municipios', 'App\Http\Controllers\MunicipioController@index');
 
+    // Implementa rotas da API para crud de endereços
+    Route::resource('enderecos', App\Http\Controllers\API\EnderecoController::class);
+
 });

@@ -50,7 +50,7 @@ class MunicipioController extends Controller
                 $items++;
             }
 
-            return "{$items} items successfully imported.";
+            return "{$items} items importados com sucesso.";
         } catch (\Exception $e) {
             return $e->getMessage();
         }
