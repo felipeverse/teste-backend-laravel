@@ -20,4 +20,8 @@ class Endereco extends Model
         'numero',
         'bairro'
     ];
+
+    public function municipio() {
+        return $this->belongsTo('App\Models\Municipio');
+    }
 }
