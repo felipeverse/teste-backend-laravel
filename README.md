@@ -1,4 +1,4 @@
-# CRUD de usuário com autenticação desenvolvido em Laravel
+# CRUD de endereços com autenticação desenvolvido em Laravel
 
 Projeto desenvolvido para um teste de desenvolvedor back end júnior.
 
